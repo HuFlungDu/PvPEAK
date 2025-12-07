@@ -24,7 +24,5 @@ public class StartGamePatch
 
         Plugin.Reset();
         Plugin.teamTracker.CreateTeams();
-        Plugin.teamTracker.GetOrCreateTeamByColor(Color.black);
-        Plugin.teamTracker.GetOrCreateTeamByColor(Color.white);
     }
 }

@@ -41,7 +41,7 @@ public class CampfireAwakePatch
         Plugin.campfireBackpackMapping[campfire] = new();
         Item testItem = null;
         //Debug
-        testItem = SingletonAsset<ItemDatabase>.Instance.itemLookup[30];
+        //testItem = SingletonAsset<ItemDatabase>.Instance.itemLookup[30];
 
         // Starting fire
 

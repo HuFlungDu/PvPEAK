@@ -47,7 +47,7 @@ public class InitializationPatch
         GameObject hinge = PvPEAKButton.transform.Find("Hinge").gameObject;
         GameObject text = hinge.transform.Find("Text").gameObject;
         GameObject icons = hinge.transform.Find("Icons").gameObject;
-        text.GetComponent<LocalizedText>().SetText("PvPEAK");
+        text.GetComponent<LocalizedText>().SetText("Host PvPEAK");
         foreach (Image image in icons.transform.GetComponentsInChildren<Image>().Skip(2))
         {
             image.transform.localEulerAngles += new Vector3(0, 180, 0);
@@ -76,7 +76,7 @@ public class InitializationPatch
     {
         // Stupid fix for localization not existing. Should probably just add it to all languages, but oh well.
         GameObject text = PvPEAKButton.transform.Find("Hinge/Text").gameObject;
-        text.GetComponent<LocalizedText>().SetText("PvPEAK");
+        text.GetComponent<LocalizedText>().SetText("Host PvPEAK");
     }
 
     //[HarmonyPatch(typeof(GameHandler), nameof(GameHandler.Awake))]

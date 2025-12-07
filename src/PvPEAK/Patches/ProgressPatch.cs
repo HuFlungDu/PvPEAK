@@ -49,7 +49,7 @@ namespace PvPEAK.Patches
             if (!Plugin.ItsPvPEAK) { return true; }
             if (Character.AllCharacters.Count == 0)
             {
-                return false;
+                return true;
             }
             __result = false;
             float num = __instance.StopHeight() + __instance.startMoveHeightThreshold;
