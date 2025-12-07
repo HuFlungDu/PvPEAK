@@ -18,6 +18,11 @@ Ever wanted to hurt your fellow scouts but felt bad because it wasn't legally sa
 
 Works well, and should probably be used with, [PEAK Unlimited](https://thunderstore.io/c/peak/p/glarmer/PEAK_Unlimited/). Certain options of PEAK unlimited (Backpacks and Marshmallow stuff) are disabled when in PvPEAK mode.
 
+## To Play
+- Have the host choose "PvPEAK" on the title screen, then invite other users like normal. If a user has a different version or does not have the mod installed, a warning will be displayed to the host.
+- Separate into teams by changing your character colors
+- Launch the game, play peak
+
 
 ## Installation
 
