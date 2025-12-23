@@ -50,7 +50,7 @@ public partial class Plugin : BaseUnityPlugin
         Logger.LogInfo($"Plugin {Id} is loaded!");
         ConfigurationHandler = new ConfigurationHandler(Config);
         //NetworkingUtilities.MAX_PLAYERS = ConfigurationHandler.MaxPlayers;
-        Harmony.DEBUG = true;
+        // Harmony.DEBUG = true;
 
         //Extra marshmallow and backpack patches
         _harmony.PatchAll(typeof(CampfireAwakePatch));
