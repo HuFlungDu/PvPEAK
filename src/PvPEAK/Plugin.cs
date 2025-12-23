@@ -80,6 +80,8 @@ public partial class Plugin : BaseUnityPlugin
         _harmony.PatchAll(typeof(ProgressPatch));
         _harmony.PatchAll(typeof(ScoutmasterPatch));
         _harmony.PatchAll(typeof(MoraleBoostPatch));
+        Utility.CreateLocalization();
+
         Plugin.Logger.LogInfo("PvPeak patches successful!");
 
         //_harmony.PatchAll(typeof(SkipIntroPatch));

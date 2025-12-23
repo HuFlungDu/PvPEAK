@@ -1,4 +1,4 @@
-using BepInEx.Logging;
+﻿using BepInEx.Logging;
 using Photon.Pun;
 using PvPEAK.GameObjects;
 using PvPEAK.Model;
@@ -168,15 +168,15 @@ public static class Utility
 
         __instance.gameObject.AddComponent<CampfireBackpackSpawner>();
         __instance.gameObject.AddComponent<CampfireFoodSpawner>();
-            //backpack_count--;
-            //Plugin.Logger.LogInfo($"Begin spawning {backpack_count} backpacks at {__instance}");
-            //List<Backpack> backpacks = Utility.SpawnBackpacks(backpack_count, __instance.gameObject.transform.position, __instance.gameObject.transform.eulerAngles, __instance.advanceToSegment, new Vector3(0, 10f, 0f));
-            //Plugin.Logger.LogInfo($"Spawned {backpacks.Count} backpacks at {__instance}");
-            //foreach (Backpack bp in backpacks)
-            //{
-            //    Plugin.campfireBackpackMapping[__instance].Add(bp);
-            //    bp.transform.parent = __instance.gameObject.transform;
-            //}
+        //backpack_count--;
+        //Plugin.Logger.LogInfo($"Begin spawning {backpack_count} backpacks at {__instance}");
+        //List<Backpack> backpacks = Utility.SpawnBackpacks(backpack_count, __instance.gameObject.transform.position, __instance.gameObject.transform.eulerAngles, __instance.advanceToSegment, new Vector3(0, 10f, 0f));
+        //Plugin.Logger.LogInfo($"Spawned {backpacks.Count} backpacks at {__instance}");
+        //foreach (Backpack bp in backpacks)
+        //{
+        //    Plugin.campfireBackpackMapping[__instance].Add(bp);
+        //    bp.transform.parent = __instance.gameObject.transform;
+        //}
 
         //Item obj = SingletonAsset<ItemDatabase>.Instance.itemLookup[6];
         //int numberOfExtraPlayers = PhotonNetwork.CurrentRoom.PlayerCount - Plugin.VanillaMaxPlayers;
@@ -228,5 +228,47 @@ public static class Utility
         //    UnlimitedLogger.GetInstance().DebugMessage(LogLevel.Info,DebugLogType.BackpackLogic,
         //        "Not enough players to add additional backpacks, use the Cheat Backpack configuration setting if you want to override this!");
         //}
+    }
+    public static void CreateLocalization()
+    {
+        // [English, Français, Italiano, Deutsch, Español(España), Español(LatAm), Português (BR), Русский, Українська,简体中文, 繁體中文, 日本語, 한국어, Polski, Türkçe]
+        // For google translate:
+        // [English, French, Italian, German, Spanish, Spanish, Portuguese, Russian, Ukrainian, Simplified Chinese, Traditional Chinese, Japanese, Korean, Polish, Turkish]
+        LocalizedText.mainTable["CUT"] = ["cut","couper","taglio","schneiden","cortar","cortar","corte", "резать", "вирізати", "切", "切","カット","자르다", "cięcie","kesmek"];
+        LocalizedText.mainTable["PVPEAK_GATHERYOURPARTY"] = [
+            "Gather your party before adventuring forth",
+            "Rassemblez votre groupe avant de partir à l'aventure",
+            "Radunate il vostro gruppo prima di partire all'avventura",
+            "Stellt eure Gruppe zusammen, bevor ihr euch auf das Abenteuer begebt",
+            "Reúne a tu grupo antes de emprender la aventura",
+            "Reúne a tu grupo antes de emprender la aventura",
+            "Reúna seu grupo antes de partir para a aventura",
+            "Соберите свою команду, прежде чем отправиться в приключение",
+            "Зберіть свою групу, перш ніж вирушати в пригоди",
+            "出发冒险之前，请先召集好你的队伍",
+            "在出發冒險之前，請先召集好你的隊伍",
+            "冒険に出かける前に、仲間を集めましょう",
+            "모험을 떠나기 전에 동료들을 모으세요",
+            "Zbierz swoją drużynę, zanim wyruszysz na przygodę",
+            "Maceraya atılmadan önce ekibinizi toplayın"];
+
+
+        LocalizedText.mainTable["PVPEAK_SECONDS"] = ["seconds","secondes","secondi","Sekunden","segundos","segundos","segundos","секунд", "секунд","秒","秒","秒お待ちください","초 후에 다시 시도해 주세요", "sekund","saniye bekleyin"];
+        LocalizedText.mainTable["PVPEAK_DIEDTOORECENTLY"] = [
+                "died too recently, wait",
+                "est décédé trop récemment, veuillez attendre",
+                "è morto troppo di recente, attendi",
+                "ist erst vor Kurzem gestorben, bitte warten Sie",
+                "falleció hace muy poco, espera",
+                "falleció hace muy poco, espera",
+                "morreu há pouco tempo, espere",
+                "умер совсем недавно, подождите",
+                "помер нещодавно, зачекайте",
+                "去世时间太短，请等待",
+                "去世時間太短，請等待",
+                "イアはつい最近亡くなったばかりです。",
+                "사망한 지 얼마 되지 않았으니",
+                "zmarł zbyt niedawno, proszę poczekać",
+                "çok kısa süre önce öldü,"];
     }
 }
