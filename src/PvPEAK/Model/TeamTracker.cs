@@ -122,9 +122,12 @@ namespace PvPEAK.Model
         {
             foreach (Character character in PlayerHandler.GetAllPlayerCharacters())
             {
-                Team team = this.GetOrCreateTeamByColor(character.refs.customization.PlayerColor);
-                Plugin.Logger.LogInfo("Created team: " + team.teamColor);
-                team.AddPlayer(character);
+                if (!character.isBot && !character.isScoutmaster && !character.isZombie)
+                {
+                    Team team = this.GetOrCreateTeamByColor(character.refs.customization.PlayerColor);
+                    Plugin.Logger.LogInfo("Created team: " + team.teamColor);
+                    team.AddPlayer(character);
+                }
             }
         }
 
