@@ -8,6 +8,7 @@ using PvPEAK.Patches;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using static BepInEx.BepInDependency;
 
 namespace PvPEAK;
@@ -43,6 +44,8 @@ public partial class Plugin : BaseUnityPlugin
     public static bool leavingLobby = false;
     //public static GameHandler gameHandler;
     //public static Networking networking;
+    public static bool CheatsEnabled = false;
+    public static InputAction _toggleCheatsAction;
 
     private void Awake()
     {
@@ -86,6 +89,12 @@ public partial class Plugin : BaseUnityPlugin
 
         //_harmony.PatchAll(typeof(SkipIntroPatch));
         //_harmony.PatchAll(typeof(PeakGamingPatch));
+        //_toggleCheatsAction = new InputAction("ToggleCheats", (InputActionType)1, "<Keyboard>/k", (string)null, (string)null, (string)null);
+        //_toggleCheatsAction.performed += delegate
+        //{
+        //    ToggleCheats();
+        //};
+        //_toggleCheatsAction.Enable();
 
         Chainloader.PluginInfos.TryGetValue(PEAKUnlimited.Plugin.Id, out PluginInfo PEAKUnlimitedInfo);
         if (PEAKUnlimitedInfo != null)
@@ -98,6 +107,11 @@ public partial class Plugin : BaseUnityPlugin
             Logger.LogInfo($"PEAKUnlimited not found; not patching");
         }
         
+    }
+
+    public static void ToggleCheats()
+    {
+        CheatsEnabled = !CheatsEnabled;
     }
 
     public static void Reset()

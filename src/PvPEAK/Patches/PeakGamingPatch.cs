@@ -12,17 +12,23 @@ namespace PvPEAK.Patches;
         [HarmonyPrefix]
         public static void MovementAndJumpPrefix(CharacterMovement __instance)
         {
-            //Sprint Patch
-            Traverse.Create(__instance).Field("sprintMultiplier").SetValue(25f);
-
-            //Jump patch
-            if (Input.GetKey(KeyCode.Space))
+            if (Plugin.CheatsEnabled)
             {
-                Character character = (Character)Traverse.Create(__instance).Field("character").GetValue();
-                if (character.IsLocal)
+                //Sprint Patch
+                Traverse.Create(__instance).Field("sprintMultiplier").SetValue(25f);
+
+                //Jump patch
+                if (Input.GetKey(KeyCode.Space))
                 {
-                    character.refs.view.RPC("JumpRpc", 0, [false]);
+                    Character character = (Character)Traverse.Create(__instance).Field("character").GetValue();
+                    if (character.IsLocal)
+                    {
+                        character.refs.view.RPC("JumpRpc", 0, [false]);
+                    }
                 }
+            } else
+            {
+                Traverse.Create(__instance).Field("sprintMultiplier").SetValue(2f);
             }
         }
 
@@ -30,36 +36,54 @@ namespace PvPEAK.Patches;
         [HarmonyPostfix]
         public static void RagdollPostfix(ref float __result)
         {
-            __result = 0;
+            if (Plugin.CheatsEnabled)
+            {
+                __result = 0;
+            }
         }
 
         [HarmonyPatch(typeof(CharacterClimbing), "GetRequestedPostition")]
         [HarmonyPrefix]
         public static void ClimbingPrefix(CharacterClimbing __instance)
         {
-            __instance.climbSpeedMod = 30f;
+            if (Plugin.CheatsEnabled)
+            {
+                __instance.climbSpeedMod = 30f;
+            }
         }
 
         [HarmonyPatch(typeof(Character), "GetTotalStamina")]
         [HarmonyPrefix]
         public static void StaminaPrefix(Character __instance)
-            {
-                __instance.data.currentStamina = 100f;
-            }
+        {
+                if (Plugin.CheatsEnabled)
+                {
+                    __instance.data.currentStamina = 100f;
+                }
+        }
 
         [HarmonyPatch(typeof(CharacterMovement), "TryToJump")]
         [HarmonyPrefix]
         public static bool JumpPrefix()
         {
-            return false;
+            if (Plugin.CheatsEnabled)
+            {
+                return false;
+            }
+            return true;
         }
 
         [HarmonyPatch(typeof(CharacterAfflictions), "Update")]
         [HarmonyPrefix]
         public static void CharacterAfflictionsUpdatePrefix(CharacterAfflictions __instance)
         {
-            return;
-            Traverse.Create(__instance.character.data).Field("isInvincible").SetValue(true);
+            if (Plugin.CheatsEnabled)
+            {
+                Traverse.Create(__instance.character.data).Field("isInvincible").SetValue(true);
+            } else
+            {
+                Traverse.Create(__instance.character.data).Field("isInvincible").SetValue(false);
+            }
         }
 }
 
