@@ -35,7 +35,7 @@ internal class EndGamePatch
                 {
                     missingMembers.Add(other_character);
                 }
-                if (other_character.data.dead && Plugin.deathMapping.ContainsKey(other_character) && Plugin.deathMapping[other_character] < 60)
+                if (other_character.data.dead && Plugin.deathMapping.ContainsKey(other_character) && (Time.time - Plugin.deathMapping[other_character]) < 60)
                 {
                     missingMembers.Add(other_character);
                 }
@@ -87,12 +87,26 @@ internal class EndGamePatch
         {
             if (Singleton<MountainProgressHandler>.Instance.IsAtPeak(character.Center) && !Singleton<PeakHandler>.Instance.summonedHelicopter && !TeamAtPeak(character, out List<Character> missingMembers))
             {
-                string message = "Gather your party before adventuring forth";
+                string message = LocalizedText.GetText("PVPEAK_GATHERYOURPARTY", false);
+                if (message == "")
+                {
+                    message = "Gather your party before adventuring forth";
+                }
+                string diedtoorecently = LocalizedText.GetText("PVPEAK_DIEDTOORECENTLY", false);
+                if (diedtoorecently == "")
+                {
+                    diedtoorecently = "died too recently, wait";
+                }
+                string seconds_string = LocalizedText.GetText("PVPEAK_SECONDS", false);
+                if (seconds_string == "")
+                {
+                    seconds_string = "seconds";
+                }
                 foreach (Character otherCharacter in missingMembers)
                 {
-                    if (Plugin.deathMapping.ContainsKey(otherCharacter) && Plugin.deathMapping[otherCharacter] < 60)
+                    if (Plugin.deathMapping.ContainsKey(otherCharacter) && (Time.time - Plugin.deathMapping[otherCharacter]) < 60)
                     {
-                        message += $"\n{otherCharacter.photonView.Owner.NickName} died too recently, wait {Mathf.RoundToInt(Time.time - Plugin.deathMapping[otherCharacter])} seconds";
+                        message += $"\n{otherCharacter.photonView.Owner.NickName} {diedtoorecently} {60-Mathf.RoundToInt(Time.time - Plugin.deathMapping[otherCharacter])} {seconds_string}";
                     } else
                     {
                         float num = Vector3.Distance(character.Center, otherCharacter.Center);
